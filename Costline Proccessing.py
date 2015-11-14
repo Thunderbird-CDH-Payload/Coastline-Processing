@@ -3,12 +3,15 @@ import matplotlib.pyplot as plt
 import numpy as np
 import math
 
+#The point class
 class Point:
-
+    #create a point from an array with two elements
     def __init__(self,shpPoint):
         self.lat = shpPoint[1]
         self.long = shpPoint[0]
         
+
+#Check to see if a point falls within a given range.
 def inRange(a,b,x):
     if a > b:
         if a > x and x > b:
@@ -34,6 +37,8 @@ def filterLocations(locations, northWest, southEast):
             
     return filteredLocations
 
+
+#Generate the file location array
 fileLocations = []
 fileLocations.append('/Users/curtishuebner/documents/development/CDHImageProccessing/coastlineData/gshhg-shp-2.3.4/GSHHS_shp/c/GSHHS_c_L1.shp')
 fileLocations.append('/Users/curtishuebner/documents/development/CDHImageProccessing/coastlineData/gshhg-shp-2.3.4/GSHHS_shp/c/GSHHS_c_L2.shp')
@@ -48,11 +53,13 @@ fileLocations.append('/Users/curtishuebner/documents/development/CDHImageProcces
 fileLocations.append('/Users/curtishuebner/documents/development/CDHImageProccessing/coastlineData/gshhg-shp-2.3.4/GSHHS_shp/f/GSHHS_f_L6.shp')
 shapeList = []
 
+
+#Build a list of list of shapes
 for fileLocation in fileLocations:
     sf = shapefile.Reader(fileLocation)
     shapeList.append(sf.shapes())
     
-
+#Build a list of points
 locations = []
 counter = 0
 for shapes in shapeList:
@@ -66,6 +73,8 @@ for shapes in shapeList:
 print(counter)
             
 
+
+#print a 2D representation of the coastline between two points.
 def renderImage(locations,northWest,southEast):
     xLength = 500
     yLength = 500
