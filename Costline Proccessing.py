@@ -2,8 +2,16 @@ import shapefile
 import matplotlib.pyplot as plt
 import numpy as np
 import math
+import argparse
 
+parser = argparse.ArgumentParser(description="Enter file path to NOAA Data")
+parser.add_argument('path',metavar='path',nargs='?')
+args = parser.parse_args();
 
+if (args.path == None):
+    pathToCoastLineData = '/Users/curtishuebner/documents/development/CDHImageProccessing/coastlineData'
+else:
+    pathToCoastLineData = args.path;
 
 #The point class
 class Point:
@@ -39,9 +47,6 @@ def filterLocations(locations, northWest, southEast):
             
     return filteredLocations
 
-#for now, just switch out this file path for the path to your own coastline data
-pathToCoastLineData = '/Users/curtishuebner/documents/development/CDHImageProccessing/coastlineData'
-
 #Generate the file location array
 fileLocations = []
 fileLocations.append('/gshhg-shp-2.3.4/GSHHS_shp/c/GSHHS_c_L1.shp')
@@ -60,7 +65,7 @@ fileLocations.append('/gshhg-shp-2.3.4/GSHHS_shp/f/GSHHS_f_L6.shp')
 #Build a list of list of shapes
 shapeList = []
 for fileLocation in fileLocations:
-    sf = shapefile.Reader(fileLocation)
+    sf = shapefile.Reader(pathToCoastLineData + fileLocation)
     shapeList.append(sf.shapes())
     
 #Build a list of points
