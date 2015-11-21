@@ -3,15 +3,7 @@ import matplotlib.pyplot as plt
 import numpy as np
 import math
 import argparse
-
-parser = argparse.ArgumentParser(description="Enter file path to NOAA Data")
-parser.add_argument('path',metavar='path',nargs='?')
-args = parser.parse_args();
-
-if (args.path == None):
-    pathToCoastLineData = '/Users/curtishuebner/documents/development/CDHImageProccessing/coastlineData'
-else:
-    pathToCoastLineData = args.path;
+import array
 
 #The point class
 class Point:
@@ -19,6 +11,18 @@ class Point:
     def __init__(self,shpPoint):
         self.lat = shpPoint[1]
         self.long = shpPoint[0]
+
+parser = argparse.ArgumentParser(description="Enter file path to NOAA Data")
+parser.add_argument('path',metavar='path',nargs='?')
+args = parser.parse_args();
+
+upPoint = Point([8.951111,4.239595])
+downPoint = Point([9.629517,3.798484])
+
+if (args.path == None):
+    pathToCoastLineData = '/Users/curtishuebner/documents/development/CDHImageProccessing/coastlineData'
+else:
+    pathToCoastLineData = args.path;
         
 
 #Check to see if a point falls within a given range.
@@ -36,16 +40,12 @@ def inRange(a,b,x):
     return False
 
 #filters out locations that are not in the rectangle specified by topRight and bottomLeft
-def filterLocations(locations, northWest, southEast):
-    filteredLocations = []
-    for location in locations:
-        if (location.lat < northWest.lat and 
-           location.long < northWest.long and
-           location.lat > southEast.lat and
-           location.lat > southEast.lat):
-            filteredLocations.append(location)
-            
-    return filteredLocations
+def isInArea(location, northWest, southEast):
+        if (inRange(northWest.lat,southEast.lat,location.lat) and
+           inRange(northWest.long,southEast.long,location.long)):
+            return True
+        else:
+            return False
 
 #Generate the file location array
 fileLocations = []
@@ -74,9 +74,10 @@ counter = 0
 for shapes in shapeList:
     for shape in shapes:
         for point in shape.points:
-            locations.append(Point(point))
+            if (isInArea(Point(point),upPoint,downPoint)):
+                locations.append(Point(point))
             if (counter % 10000 == 0):
-                pass#print(point)
+                print(counter)
             counter += 1
 
 print(counter)
@@ -107,8 +108,6 @@ def renderImage(locations,northWest,southEast):
             
     return outputArray
             
-upPoint = Point([8.951111,4.239595])
-downPoint = Point([9.629517,3.798484])
 
 
 plt.imshow(renderImage(locations,upPoint,downPoint))
