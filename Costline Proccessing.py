@@ -3,6 +3,8 @@ import matplotlib.pyplot as plt
 import numpy as np
 import math
 
+
+
 #The point class
 class Point:
     #create a point from an array with two elements
