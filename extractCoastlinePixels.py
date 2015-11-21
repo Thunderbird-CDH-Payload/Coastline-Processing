@@ -1,5 +1,5 @@
 from PIL import Image
-
+from optparse import OptionParser
 
 ## Command-Line Parser
 parser = OptionParser()
@@ -18,26 +18,19 @@ im = Image.open(options.image)
 rgb_im = im.convert('RGB')
 
 ## Extract Pixel Values
+coastlinePoints = []
 
-def extractCoastlinePixels(Image processedImage):
-    
-    rgb_im = im.convert('RGB')
-    
-    coastlinePoints = []
-
-    for x in range(0, .size[0]):
-        for y in range(0, im.size[1]):
-            r, g, b = rgb_im.getpixel((x, y))
+for x in range(0, im.size[0]):
+    for y in range(0, im.size[1]):
+        r, g, b = rgb_im.getpixel((x, y))
         
-            if((r ==255) and (b ==255) and (g ==255)):
-                pixelPosition = []
-                pixelPosition.append(x)
-                pixelPosition.append(y)
-                coastlinePoints.append(pixelPosition)
+        if((r ==255) and (b ==255) and (g ==255)):
+            pixelPosition = []
+            pixelPosition.append(x)
+            pixelPosition.append(y)
+            coastlinePoints.append(pixelPosition)
             
-                print coastlinePoints
+            print coastlinePoints
 
-
-
-    print im.size
+print im.size
 
