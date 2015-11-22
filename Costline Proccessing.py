@@ -84,19 +84,22 @@ print(counter)
             
 
 
+def renderImage2(locations,northWest):
+    pass
+
 #print a 2D representation of the coastline between two points.
 def renderImage(locations,northWest,southEast):
-    xLength = 500
-    yLength = 500
+    size = 500
     xWidth = northWest.lat - southEast.lat
     yWidth = southEast.long - northWest.long
-    outputArray = np.zeros((xLength,yLength))
+    xLength = size * xWidth
+    yLength = size * yWidth
+    outputArray = np.zeros((math.ceil(xLength),math.ceil(yLength)))
     
     for location in locations:
-        if (inRange(northWest.lat,southEast.lat,location.lat) and
-           inRange(northWest.long,southEast.long,location.long)):
+        if (isInArea(location,upPoint,downPoint)):
                
-            normedX = (location.lat - northWest.lat) * xLength / (xWidth)
+            normedX = (northWest.lat - location.lat) * xLength / (xWidth)
             normedY = (location.long - southEast.long) * yLength / (yWidth)
             print(xWidth)
             print(yWidth)
