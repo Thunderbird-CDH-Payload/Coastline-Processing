@@ -49,17 +49,17 @@ def isInArea(location, northWest, southEast):
 
 #Generate the file location array
 fileLocations = []
-fileLocations.append('/gshhg-shp-2.3.4/GSHHS_shp/c/GSHHS_c_L1.shp')
-fileLocations.append('/gshhg-shp-2.3.4/GSHHS_shp/c/GSHHS_c_L2.shp')
-fileLocations.append('/gshhg-shp-2.3.4/GSHHS_shp/c/GSHHS_c_L3.shp')
-fileLocations.append('/gshhg-shp-2.3.4/GSHHS_shp/c/GSHHS_c_L5.shp')
-fileLocations.append('/gshhg-shp-2.3.4/GSHHS_shp/c/GSHHS_c_L6.shp')
-fileLocations.append('/gshhg-shp-2.3.4/GSHHS_shp/f/GSHHS_f_L1.shp')
-fileLocations.append('/gshhg-shp-2.3.4/GSHHS_shp/f/GSHHS_f_L2.shp')
-fileLocations.append('/gshhg-shp-2.3.4/GSHHS_shp/f/GSHHS_f_L3.shp')
-fileLocations.append('/gshhg-shp-2.3.4/GSHHS_shp/f/GSHHS_f_L4.shp')
-fileLocations.append('/gshhg-shp-2.3.4/GSHHS_shp/f/GSHHS_f_L5.shp')
-fileLocations.append('/gshhg-shp-2.3.4/GSHHS_shp/f/GSHHS_f_L6.shp')
+fileLocations.append('/GSHHS_shp/c/GSHHS_c_L1.shp')
+fileLocations.append('/GSHHS_shp/c/GSHHS_c_L2.shp')
+fileLocations.append('/GSHHS_shp/c/GSHHS_c_L3.shp')
+fileLocations.append('/GSHHS_shp/c/GSHHS_c_L5.shp')
+fileLocations.append('/GSHHS_shp/c/GSHHS_c_L6.shp')
+fileLocations.append('/GSHHS_shp/f/GSHHS_f_L1.shp')
+fileLocations.append('/GSHHS_shp/f/GSHHS_f_L2.shp')
+fileLocations.append('/GSHHS_shp/f/GSHHS_f_L3.shp')
+fileLocations.append('/GSHHS_shp/f/GSHHS_f_L4.shp')
+fileLocations.append('/GSHHS_shp/f/GSHHS_f_L5.shp')
+fileLocations.append('/GSHHS_shp/f/GSHHS_f_L6.shp')
 
 
 #Build a list of list of shapes
